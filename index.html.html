@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кейтеринг «Гастроном» — Выездной ресторан на ваш праздник</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Georgia', 'Times New Roman', serif; font-size: 16px; line-height: 1.6; color: #333; background: #fdfbf7; }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        .wrap { max-width: 1140px; margin: 0 auto; padding: 0 20px; }
+
+        /* Кнопки */
+        .btn { display: inline-block; padding: 14px 30px; font-size: 15px; font-weight: bold; cursor: pointer; border: none; transition: 0.3s; text-align: center; text-transform: uppercase; letter-spacing: 1px; }
+        .btn-gold { background: #c5a059; color: #fff; }
+        .btn-gold:hover { background: #b08d4a; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(197, 160, 89, 0.4); }
+        .btn-outline { background: transparent; color: #fff; border: 2px solid #fff; }
+        .btn-outline:hover { background: #fff; color: #5a1820; }
+
+        /* Шапка */
+        .top { position: absolute; top: 0; left: 0; right: 0; color: #fff; z-index: 100; padding: 20px 0; border-bottom: 1px solid rgba(255,255,255,0.2); }
+        .top-row { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+        .brand { font-size: 24px; font-weight: bold; font-family: 'Arial', sans-serif; letter-spacing: 2px; text-transform: uppercase; }
+        .brand span { color: #c5a059; }
+        .nav { display: flex; gap: 26px; font-family: 'Arial', sans-serif; font-size: 14px; font-weight: bold; }
+        .nav a:hover { color: #c5a059; }
+        .top-tel { font-size: 18px; font-weight: bold; }
+
+        /* Баннер */
+        .hero { background: linear-gradient(rgba(40, 10, 15, 0.75), rgba(40, 10, 15, 0.85)), url('bg.jpg') center/cover; color: #fff; padding: 180px 0 120px; text-align: center; }
+        .hero h1 { font-size: 54px; line-height: 1.2; margin-bottom: 20px; font-weight: normal; }
+        .hero h1 span { font-style: italic; color: #c5a059; }
+        .hero p { font-size: 20px; margin-bottom: 40px; opacity: 0.9; max-width: 700px; margin-left: auto; margin-right: auto; font-family: 'Arial', sans-serif; }
+        .hero-act { display: flex; gap: 20px; justify-content: center; }
+
+        /* Преимущества */
+        .adv { background: #fff; padding: 60px 0; border-bottom: 1px solid #eaeaea; }
+        .adv-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; text-align: center; font-family: 'Arial', sans-serif; }
+        .adv-card h3 { font-size: 18px; color: #5a1820; margin-bottom: 10px; }
+        .adv-card p { font-size: 14px; color: #666; }
+
+        /* Секции */
+        .sec { padding: 90px 0; }
+        .sec-dark { background: #5a1820; color: #fff; }
+        .sec h2 { font-size: 38px; text-align: center; margin-bottom: 15px; color: #5a1820; font-weight: normal; }
+        .sec-dark h2 { color: #fff; }
+        .sec-sub { text-align: center; color: #888; margin-bottom: 50px; font-size: 16px; font-family: 'Arial', sans-serif; }
+        .sec-dark .sec-sub { color: rgba(255,255,255,0.7); }
+
+        /* Услуги */
+        .serv-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .serv-card { background: #fff; padding: 40px 30px; border: 1px solid #eaeaea; text-align: center; transition: 0.3s; }
+        .serv-card:hover { border-color: #c5a059; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        .serv-card h3 { font-size: 22px; color: #5a1820; margin-bottom: 15px; }
+        .serv-card p { font-size: 15px; color: #666; font-family: 'Arial', sans-serif; margin-bottom: 20px; }
+        .serv-card .price { color: #c5a059; font-weight: bold; font-size: 18px; }
+
+        /* О нас */
+        .about-row { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; font-family: 'Arial', sans-serif; }
+        .about-row p { color: #555; margin-bottom: 20px; font-size: 16px; }
+        .about-img { height: 450px; border-radius: 4px; overflow: hidden; box-shadow: 10px 10px 0 #c5a059; }
+        .about-img img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* Форма */
+        .form-wrap { max-width: 700px; margin: 0 auto; background: #fff; padding: 50px; box-shadow: 0 15px 40px rgba(0,0,0,0.08); font-family: 'Arial', sans-serif; }
+        .fg { margin-bottom: 20px; }
+        .fg label { display: block; font-size: 14px; font-weight: bold; color: #5a1820; margin-bottom: 8px; }
+        .fg input, .fg select { width: 100%; padding: 15px; border: 1px solid #ccc; font-size: 16px; font-family: inherit; background: #fdfbf7; }
+        .fg input:focus, .fg select:focus { outline: none; border-color: #c5a059; }
+        .form-wrap .btn { width: 100%; }
+
+        /* Подвал */
+        .foot { background: #2a0b0f; color: rgba(255,255,255,0.6); padding: 40px 0; text-align: center; font-family: 'Arial', sans-serif; font-size: 14px; }
+        .foot p { margin-bottom: 10px; }
+
+        @media (max-width: 992px) {
+            .adv-row { grid-template-columns: repeat(2, 1fr); }
+            .serv-grid { grid-template-columns: repeat(2, 1fr); }
+            .about-row { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 40px; }
+        }
+        @media (max-width: 768px) {
+            .top-row { flex-direction: column; }
+            .nav { flex-wrap: wrap; justify-content: center; }
+            .hero-act { flex-direction: column; }
+            .adv-row { grid-template-columns: 1fr; }
+            .serv-grid { grid-template-columns: 1fr; }
+            .form-wrap { padding: 30px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="top">
+        <div class="wrap top-row">
+            <div class="brand">Гастро<span>ном</span></div>
+            <nav class="nav">
+                <a href="#services">Услуги</a>
+                <a href="#about">О нас</a>
+                <a href="#booking">Заказать</a>
+            </nav>
+            <a href="tel:+79001234567" class="top-tel">+7 (900) 123-45-67</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="wrap">
+            <h1>Выездной ресторан <br>для вашего <span>идеального праздника</span></h1>
+            <p>Организуем фуршеты, банкеты и кофе-брейки под ключ. Авторская кухня, профессиональные повара и безупречный сервис.</p>
+            <div class="hero-act">
+                <a href="#booking" class="btn btn-gold">Рассчитать стоимость</a>
+                <a href="#services" class="btn btn-outline">Наши услуги</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="adv">
+        <div class="wrap adv-row">
+            <div class="adv-card">
+                <h3>Свой цех</h3>
+                <p>Готовим на собственной оборудованной кухне с соблюдением всех норм СанПиН.</p>
+            </div>
+            <div class="adv-card">
+                <h3>Шеф-повар</h3>
+                <p>Блюда от шефа с опытом работы в ресторанах Москвы и Европы.</p>
+            </div>
+            <div class="adv-card">
+                <h3>Под ключ</h3>
+                <p>Привезем, сервируем, подадим и уберем. Вам останется только отдыхать.</p>
+            </div>
+            <div class="adv-card">
+                <h3>Любой масштаб</h3>
+                <p>От делового кофе-брейка на 10 человек до свадьбы на 200 гостей.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="sec" id="services">
+        <div class="wrap">
+            <h2>Форматы обслуживания</h2>
+            <p class="sec-sub">Мы подберем формат под ваш бюджет и повод</p>
+            <div class="serv-grid">
+                <div class="serv-card">
+                    <h3>Фуршет</h3>
+                    <p>Легкие закуски, канапе и тарталетки. Идеально для приемов, презентаций и дней рождения.</p>
+                    <div class="price">от 1 500 ₽ / чел</div>
+                </div>
+                <div class="serv-card">
+                    <h3>Банкет</h3>
+                    <p>Полноценное горячее меню, салаты, десерты и официанты. Для свадеб и юбилеев.</p>
+                    <div class="price">от 3 500 ₽ / чел</div>
+                </div>
+                <div class="serv-card">
+                    <h3>Кофе-брейк</h3>
+                    <p>Свежая выпечка, кофе, чай и фрукты. Для конференций, семинаров и тренингов.</p>
+                    <div class="price">от 800 ₽ / чел</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="sec" id="about" style="background: #fff;">
+        <div class="wrap about-row">
+            <div class="about-img">
+                <img src="food.jpg" alt="Наши блюда">
+            </div>
+            <div>
+                <h2 style="text-align:left; margin-bottom: 20px;">О компании</h2>
+                <p>Кейтеринговая компания «Гастроном» работает на рынке выездного обслуживания с 2018 года. За это время мы успешно провели более 400 мероприятий — от скромных семейных торжеств до масштабных корпоративных фуршетов.</p>
+                <p>Мы не просто привозим еду. Мы создаем атмосферу. Наши официанты и бармены обучены стандартам премиального сервиса, а повара готовят из фермерских продуктов.</p>
+                <p>Работаем по договору с юридическими и физическими лицами. Предоставляем полную отчетную документацию.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="sec sec-dark" id="booking">
+        <div class="wrap">
+            <h2>Заявка на расчет</h2>
+            <p class="sec-sub">Оставьте данные, и наш менеджер свяжется с вами в течение 15 минут</p>
+            
+            <form class="form-wrap" onsubmit="return validateForm(event)">
+                <div class="fg">
+                    <label>Ваше имя *</label>
+                    <input type="text" id="name" placeholder="Иван Иванов" required>
+                </div>
+                <div class="fg">
+                    <label>Телефон *</label>
+                    <input type="tel" id="phone" placeholder="+7 (___) ___-__-__" required>
+                </div>
+                <div class="fg">
+                    <label>Тип мероприятия *</label>
+                    <select id="event" required>
+                        <option value="">Выберите формат</option>
+                        <option>Свадьба / Юбилей</option>
+                        <option>Корпоратив / Фуршет</option>
+                        <option>Кофе-брейк</option>
+                        <option>Другое</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-gold">Отправить заявку</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="foot">
+        <div class="wrap">
+            <p>&copy; 2026 Кейтеринговая компания «Гастроном». Все права защищены.</p>
+            <p>г. Москва, ул. Поварская, д. 10 | Тел: +7 (900) 123-45-67 | Режим работы: пн-вс с 09:00 до 22:00</p>
+        </div>
+    </footer>
+
+    <script>
+        function validateForm(event) {
+            event.preventDefault();
+            var name = document.getElementById('name').value;
+            var phone = document.getElementById('phone').value;
+            var eventType = document.getElementById('event').value;
+
+            if (name === '' || phone === '' || eventType === '') {
+                alert('Пожалуйста, заполните все поля!');
+                return false;
+            }
+            alert('Спасибо, ' + name + '! Заявка на ' + eventType + ' принята. Наш менеджер перезвонит вам.');
+            document.querySelector('.form-wrap').reset();
+            return false;
+        }
+    </script>
+</body>
+</html>
